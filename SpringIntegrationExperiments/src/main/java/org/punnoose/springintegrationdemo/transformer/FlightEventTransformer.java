@@ -1,9 +1,10 @@
-package org.punnoose.springintegrationdemo.service;
+package org.punnoose.springintegrationdemo.transformer;
 
 import java.util.Calendar;
 
-import org.punnoose.springintegrationdemo.vo.Flight;
-import org.punnoose.springintegrationdemo.vo.FlightDelayEvent;
+import org.punnoose.springintegrationdemo.domain.Flight;
+import org.punnoose.springintegrationdemo.domain.FlightDelayEvent;
+import org.punnoose.springintegrationdemo.service.FlightScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.util.Assert;

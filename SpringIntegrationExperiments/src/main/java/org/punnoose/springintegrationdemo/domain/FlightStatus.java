@@ -1,4 +1,4 @@
-package org.punnoose.springintegrationdemo.vo;
+package org.punnoose.springintegrationdemo.domain;
 
 
 public class FlightStatus {

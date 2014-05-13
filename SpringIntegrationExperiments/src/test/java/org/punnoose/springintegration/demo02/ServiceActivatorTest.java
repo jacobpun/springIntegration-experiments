@@ -7,7 +7,7 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.punnoose.springintegrationdemo.vo.FlightStatus;
+import org.punnoose.springintegrationdemo.domain.FlightStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageChannel;
@@ -31,7 +31,7 @@ public class ServiceActivatorTest {
 	private PollableChannel statusUpdates;
 
 	@Test
-	public void testTransfom() {
+	public void testServiceActivator() {
 		Message<String> message = MessageBuilder.withPayload("SI77+0130")
 				.build();
 		flightDelayInput.send(message);

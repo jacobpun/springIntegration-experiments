@@ -1,4 +1,4 @@
-package org.punnoose.springintegrationdemo.vo;
+package org.punnoose.springintegrationdemo.domain;
 
 import java.util.Date;
 

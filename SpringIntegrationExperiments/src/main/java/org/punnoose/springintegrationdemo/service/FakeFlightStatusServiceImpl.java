@@ -1,8 +1,8 @@
 package org.punnoose.springintegrationdemo.service;
 
-import org.punnoose.springintegrationdemo.vo.Flight;
-import org.punnoose.springintegrationdemo.vo.FlightDelayEvent;
-import org.punnoose.springintegrationdemo.vo.FlightStatus;
+import org.punnoose.springintegrationdemo.domain.Flight;
+import org.punnoose.springintegrationdemo.domain.FlightDelayEvent;
+import org.punnoose.springintegrationdemo.domain.FlightStatus;
 import org.springframework.integration.annotation.Payload;
 import org.springframework.integration.annotation.Publisher;
 

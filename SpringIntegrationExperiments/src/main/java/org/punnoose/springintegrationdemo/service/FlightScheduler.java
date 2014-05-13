@@ -1,6 +1,6 @@
 package org.punnoose.springintegrationdemo.service;
 
-import org.punnoose.springintegrationdemo.vo.Flight;
+import org.punnoose.springintegrationdemo.domain.Flight;
 
 public interface FlightScheduler {
 

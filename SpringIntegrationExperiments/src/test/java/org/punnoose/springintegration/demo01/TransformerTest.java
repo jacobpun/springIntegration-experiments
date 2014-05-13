@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.punnoose.springintegrationdemo.vo.FlightDelayEvent;
+import org.punnoose.springintegrationdemo.domain.FlightDelayEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageChannel;

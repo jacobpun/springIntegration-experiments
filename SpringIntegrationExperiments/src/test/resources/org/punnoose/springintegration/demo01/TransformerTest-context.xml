@@ -14,6 +14,7 @@
 		method="convertToDelayEvent" output-channel="delayEvents" />
 
 	<context:component-scan base-package="org.punnoose.springintegrationdemo.service" />
+	<context:component-scan base-package="org.punnoose.springintegrationdemo.transformer" />
 
 	<bean class="org.punnoose.springintegrationdemo.service.FakeFlightSchedulerImpl" />
 

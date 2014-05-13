@@ -1,0 +1,30 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/integration"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/integration
+http://www.springframework.org/schema/integration/spring-integration.xsd">
+	<channel id="input" />
+	<channel id="validated" />
+	<channel id="confirmed">
+		<queue />
+	</channel>
+	<channel id="rejected">
+		<queue />
+	</channel>
+	<gateway id="cancellationsGateway"
+		service-interface="org.punnoose.springintegrationdemo.gateway.CancellationsGateway"
+		default-request-channel="input" />
+	<filter id="cancellationsFilter" input-channel="input"
+		ref="cancellationsFilterBean" method="accept" discard-channel="rejected"
+		output-channel="validated" />
+	<beans:bean id="cancellationsFilterBean"
+		class="org.punnoose.springintegrationdemo.filter.CancellationRequestFilter">
+		<beans:property name="pattern" value="GOLD[A-Z0-9]{6}+" />
+	</beans:bean>
+	<service-activator id="goldCancellationsProcessor"
+		input-channel="validated" ref="cancellationsService" method="cancel"
+		output-channel="confirmed" />
+	<beans:bean id="cancellationsService"
+		class="org.punnoose.springintegrationdemo.service.FakeCancellationServiceImpl" />
+</beans:beans>

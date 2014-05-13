@@ -1,4 +1,4 @@
-package org.punnoose.springintegration.demo03;
+package org.punnoose.springintegration.demo04;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -7,7 +7,6 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.punnoose.springintegrationdemo.domain.FlightDelayEvent;
 import org.punnoose.springintegrationdemo.domain.FlightStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.Message;
@@ -24,22 +23,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class PublisherTest {
+public class ChainTest {
 
 	@Autowired
 	private MessageChannel flightDelayInput;
 	@Autowired
-	private PollableChannel statisticsChannel;
+	private PollableChannel statusUpdates;
 
 	@Test
-	public void testPublisher() {
+	public void testChain() {
 		Message<String> message = MessageBuilder.withPayload("SI77+0130")
 				.build();
 		flightDelayInput.send(message);
-		Message<?> flightDelayEvent = statisticsChannel.receive();
-		assertNotNull(flightDelayEvent);
-		Object payload = flightDelayEvent.getPayload();
+		Message<?> status = statusUpdates.receive();
+		assertNotNull(status);
+		Object payload = status.getPayload();
 		assertNotNull(payload);
-		assertEquals(FlightDelayEvent.class, payload.getClass());
+		assertEquals(FlightStatus.class, payload.getClass());
 	}
 }

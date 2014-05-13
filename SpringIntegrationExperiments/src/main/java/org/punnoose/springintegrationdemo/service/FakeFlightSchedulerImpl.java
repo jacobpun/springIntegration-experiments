@@ -2,7 +2,7 @@ package org.punnoose.springintegrationdemo.service;
 
 import java.util.Date;
 
-import org.punnoose.springintegrationdemo.vo.Flight;
+import org.punnoose.springintegrationdemo.domain.Flight;
 
 public class FakeFlightSchedulerImpl implements FlightScheduler {
 	public Flight nextFlightForNumber(String flightNumber) {

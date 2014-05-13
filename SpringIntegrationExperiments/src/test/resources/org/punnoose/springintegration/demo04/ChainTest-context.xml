@@ -8,23 +8,17 @@
 
 	<int:poller default="true" fixed-delay="50" />
 
-	<int:channel id="delayEvents">
-		<int:queue />
-	</int:channel>
-
-	<int:transformer input-channel="flightDelayInput" ref="flightEventTransformer"
-		method="convertToDelayEvent" output-channel="delayEvents" />
-
 	<int:channel id="statusUpdates">
 		<int:queue />
 	</int:channel>
 
-	<int:channel id="statisticsChannel">
-		<int:queue />
-	</int:channel>
 
-	<int:service-activator input-channel="delayEvents"
-		output-channel="statusUpdates" ref="flightStatusService" method="updateStatus" />
+	<int:chain input-channel="flightDelayInput" output-channel="statusUpdates">
+		<int:transformer ref="flightEventTransformer" method="convertToDelayEvent" />
+
+		<int:service-activator ref="flightStatusService"
+			method="updateStatus" />
+	</int:chain>
 
 	<bean id="flightStatusService"
 		class="org.punnoose.springintegrationdemo.service.FakeFlightStatusServiceImpl" />
@@ -34,7 +28,4 @@
 
 	<context:component-scan base-package="org.punnoose.springintegrationdemo.service" />
 	<context:component-scan base-package="org.punnoose.springintegrationdemo.transformer" />
-	
-	<bean
-		class="org.springframework.integration.aop.PublisherAnnotationBeanPostProcessor" />
 </beans>

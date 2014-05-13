@@ -3,8 +3,6 @@ package org.punnoose.springintegration.demo04;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.punnoose.springintegrationdemo.domain.FlightStatus;

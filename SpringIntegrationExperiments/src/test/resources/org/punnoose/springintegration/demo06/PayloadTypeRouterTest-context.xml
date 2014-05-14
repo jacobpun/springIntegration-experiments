@@ -1,0 +1,24 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/integration"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/integration
+http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+	<channel id="payments" />
+	<payload-type-router input-channel="payments">
+		<mapping
+			type="org.punnoose.springintegrationdemo.domain.payment.CreditCardPayment"
+			channel="creditCardPayments" />
+		<mapping
+			type="org.punnoose.springintegrationdemo.domain.payment.PaypalPayment"
+			channel="paypalPayments" />
+	</payload-type-router>
+
+	<channel id="paypalPayments">
+		<queue />
+	</channel>
+	<channel id="creditCardPayments">
+		<queue />
+	</channel>
+</beans:beans>
